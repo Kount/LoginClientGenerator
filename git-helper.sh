@@ -22,11 +22,6 @@ if [ "$release_note" = "" ]; then
     echo "[INFO] No command line input provided. Set \$release_note to $release_note"
 fi
 
-# Initialize the local directory as a Git repository
-#git init .
-
-#git remote add origin https://github.com/${git_user_id}/${git_repo_id}.git
-
 # Pull existing 
 git pull origin master 
 
@@ -35,7 +30,6 @@ git add .
 
 # Commits the tracked changes and prepares them to be pushed to a remote repository.
 git commit -m "$release_note"
-
 
 # Pushes (Forces) the changes in the local repository up to the remote repository
 echo "Git pushing to https://github.com/${git_user_id}/${git_repo_id}.git"
