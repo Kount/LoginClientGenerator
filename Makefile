@@ -12,6 +12,8 @@ COMMIT_MESSAGE ?= "updating client ${GIT_HASH}"
 #Language specific has to match packagePath in config
 PHP_PROJECT :=login-php
 
+clean: php-clean
+
 #PHP client generation
 php-push: php-build
 	cd ${PHP_PROJECT};\
