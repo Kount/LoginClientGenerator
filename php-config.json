@@ -1,0 +1,7 @@
+{
+    "invokerPackage":"Kount",
+    "apiPackage": "Login",
+    "modelPackage": "Model",
+    "packagePath": "login-php",
+    "srcBasePath": "KD"
+}
