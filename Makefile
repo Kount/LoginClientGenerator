@@ -10,11 +10,15 @@ PHP_BUILDDIR=login-php
 
 php-push: php-build
 	cd ${PHP_BUILDDIR};\
-	pwd;\
-	${SHELL} git_push.sh Kount login-php ${COMMIT_MESSAGE};
+	cp ../git-helper.sh ./;\
+	${SHELL} ./git-helper.sh Kount login-php ${COMMIT_MESSAGE};
+
 	
-php-build: php-clean
+php-build: php-clone
 	swagger-codegen generate -i ${OPEN_API} -l php  -c php-config.json
+
+php-clone: php-clean
+	git clone git@github.com:Kount/login-php.git
 
 php-clean: 
 	rm -rf ./${PHP_BUILDDIR}
