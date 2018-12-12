@@ -3,5 +3,9 @@
     "apiPackage": "Login",
     "modelPackage": "Model",
     "packagePath": "login-php",
-    "srcBasePath": "KD"
+    "srcBasePath": "KD",
+    "gitUserId": "Kount",
+    "gitRepoId": "login-php",
+    "artifactVersion": "1.0.0"
+
 }
