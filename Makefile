@@ -12,7 +12,10 @@ COMMIT_MESSAGE ?= "updating client ${GIT_HASH}"
 #Language specific has to match packagePath in config
 PHP_PROJECT :=login-php
 
-clean: php-clean
+push: php-push #java-push
+build: php-build #java-build
+clone: php-clone #java-clone
+clean: php-clean #java-clean
 
 #PHP client generation
 php-push: php-build
@@ -31,8 +34,9 @@ php-clean:
 	rm -rf ./${PHP_PROJECT}
 
 
-#java-push
-#java-build
-#java-clean
+#java-push:
+#java-build:
+#java-clone: 
+#java-clean:
 .PHONY: php-push php-build php-clean
 
