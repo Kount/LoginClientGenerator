@@ -1,0 +1,119 @@
+{
+  "openapi" : "3.0.0",
+  "info" : {
+    "title" : "KDAPS API",
+    "version" : "1.0.0"
+  },
+  "servers" : [ {
+    "url" : "http://internal-login-Elast-4UHVPVG23EQA-1871943616.us-west-2.elb.amazonaws.com/"
+  } ],
+  "security" : [ {
+    "BearerAuth" : [ "Login" ]
+  } ],
+  "paths" : {
+    "/login" : {
+      "post" : {
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/login"
+              }
+            }
+          },
+          "required" : true
+        },
+        "responses" : {
+          "200" : {
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/loginResponse"
+                }
+              }
+            }
+          }
+        },
+        "security" : [ {
+          "Authorization" : [ ]
+        } ]
+      }
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "login" : {
+        "required" : [ "clientID", "sessionID", "userAuthenticationStatus", "userID" ],
+        "type" : "object",
+        "properties" : {
+          "clientID" : {
+            "pattern" : "^\\w{1,64}$",
+            "type" : "string"
+          },
+          "loginURL" : {
+            "pattern" : "^((http[s]?):\\/)?\\/?([^:\\/\\s]+)((\\/\\w+)*\\/)([\\w\\-\\.]+[^#?\\s]+)(.*)?(#[\\w\\-]+)?$",
+            "type" : "string"
+          },
+          "sessionID" : {
+            "pattern" : "^[\\w-]{1,32}$",
+            "type" : "string"
+          },
+          "userID" : {
+            "pattern" : "^\\w{1,64}\b$",
+            "type" : "string"
+          },
+          "userAuthenticationStatus" : {
+            "pattern" : "^\\w{1,64}\b$",
+            "type" : "string"
+          },
+          "userLogin" : {
+            "pattern" : "^\\w{1,64}\b$",
+            "type" : "string",
+            "format" : "byte"
+          },
+          "userPassword" : {
+            "pattern" : "^[A-Fa-f0-9]{64}",
+            "type" : "string",
+            "format" : "byte"
+          },
+          "userCreationDate" : {
+            "pattern" : "^(-?(?:[1-9][0-9]*)?[0-9]{4})-(1[0-2]|0[1-9])-(3[01]|0[1-9]|[12][0-9])T(2[0-3]|[01][0-9]):([0-5][0-9]):([0-5][0-9])(\\.[0-9]+)?(Z)?$",
+            "type" : "string",
+            "format" : "date-time"
+          }
+        }
+      },
+      "loginResponse" : {
+        "type" : "object",
+        "properties" : {
+          "recommendation" : {
+            "type" : "string",
+            "enum" : [
+              "Allow",
+              "Challenge",
+              "Block"
+            ]
+          },
+          "userProfile" : {
+            "type" : "string"
+          },
+          "sessionID" : {
+            "type" : "string"
+          }
+        }
+      }
+    },
+    "securitySchemes" : {
+      "BearerAuth" : {
+        "type" : "http",
+        "scheme" : "bearer",
+        "bearerFormat" : "JWT"
+      },
+      "Authorization" : {
+        "type" : "apiKey",
+        "name" : "Authorization",
+        "in" : "header"
+      }
+    }
+  }
+}

@@ -22,10 +22,9 @@ php-push: php-build
 	cd ${PHP_PROJECT};\
 	cp ../git-helper.sh ./;\
 	${SHELL} ./git-helper.sh ${GITHUB_USER} ${PHP_PROJECT} ${COMMIT_MESSAGE};
-
 	
 php-build: php-clone
-	swagger-codegen generate -i ${OPEN_API} -l php  -c php-config.json
+	swagger-codegen generate -i ${OPEN_API} -l php  -c php-config.json -a "Authorization:Bearer"
 
 php-clone: php-clean
 	git clone git@github.com:${GITHUB_USER}/${PHP_PROJECT}.git
